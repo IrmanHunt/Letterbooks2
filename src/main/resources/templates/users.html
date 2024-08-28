@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/XSL/Transform">
+<head>
+    <meta charset="UTF-8">
+    <title>Letterbooks</title>
+</head>
+<body>
+
+<header th:replace="fragments/header :: header"></header>
+
+<ol>
+    <li th:each="user : ${users}">
+        <a th:href="@{/users/{name}(name=${user.username})}" th:text="${user.username}"></a>
+    </li>
+</ol>
+
+</body>
+</html>

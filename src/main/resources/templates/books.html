@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/XSL/Transform">
+<head>
+    <meta charset="UTF-8">
+    <title>Letterbooks</title>
+</head>
+<body>
+
+<header th:replace="fragments/header :: header"></header>
+<span th:if="${user != null}">
+    <nav th:replace="fragments/user-nav :: user-nav"></nav>
+</span>
+
+<h4>Книги:</h4>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Author</th>
+        <th>Year</th>
+        <th>Pages</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book : ${books}">
+        <td><a th:href="@{/books/{id}(id=${book.id})}" th:text="${book.name}"></a></td>
+        <td th:text="${book.author}">Автор книги</td>
+        <td th:text="${book.year}">Год выпуска</td>
+        <td th:text="${book.pages}">Количество страниц</td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

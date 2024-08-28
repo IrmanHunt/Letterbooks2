@@ -1,0 +1,10 @@
+<nav th:fragment="user-nav">
+    <div>
+        <a th:href="@{/users/{name}(name=${user.username})}">Профиль</a> |
+        <a th:href="@{'/users/' + ${user.username} + '/books'}">Книги</a> |
+        <a th:href="@{/users/{name}(name=${user.username})/#}">Дневник</a> |
+        <a th:href="@{/users/{name}(name=${user.username})/#}">Ридлист</a> |
+        <a th:href="@{/users/{name}(name=${user.username})/#}">Лайки</a> |
+    </div>
+    <hr>
+</nav>

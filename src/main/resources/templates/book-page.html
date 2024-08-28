@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/XSL/Transform">
+<head>
+    <meta charset="UTF-8">
+    <title>Letterbooks</title>
+</head>
+<body>
+
+<header th:replace="fragments/header :: header"></header>
+
+<h4>Книга:</h4>
+<hr>
+<img th:src="@{/images/{id}(id=${image.id})}" height="100px"/>
+<hr>
+Название книги: <b th:text="${book.name}"></b><br>
+Автор: <b th:text="${book.author}"></b><br>
+Год: <b th:text="${book.year}"></b><br>
+Страниц: <b th:text="${book.pages}"></b><br>
+<hr>
+
+<span th:if="${user != null}">
+    <span th:if="${userBook == null}">
+        <form th:action="@{'/users/' + ${user.username} + '/books/' + ${book.name} + '/read'}" method="post">
+            <input type="hidden" name="userId" th:value="${user.id}" />
+            <input type="hidden" name="bookId" th:value="${book.id}" />
+            <input type="submit" value="Добавить в прочитанное">
+        </form>
+    </span>
+    <hr>
+    <form th:action="@{/books/delete/{id}(id=${book.id})}" method="post">
+        <input type="submit" value="Удалить книгу">
+    </form>
+</span>
+
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/XSL/Transform">
+<head>
+    <meta charset="UTF-8">
+    <title>Letterbooks</title>
+</head>
+<body>
+
+<header th:replace="fragments/header :: header"></header>
+
+Добро пожаловать!
+<br>
+
+<hr>
+<div th:if="${user != null}">
+    <h3>Создать новую книгу</h3>
+    <form action="/books/create" method="post" enctype="multipart/form-data">
+        Название книги: <input type="text" name="name" required/><br><br>
+        Имя автора: <input type="text" name="author" required/><br><br>
+        Год: <input type="number" name="year" required/><br><br>
+        Количество страниц: <input type="number" name="pages" required/><br><br>
+        Фотография: <input type="file" name="file" required><br><br>
+        <input type="submit" value="Добавить книгу">
+    </form>
+</div>
+
+<span th:if="${user == null}">
+    <a href="/login">Логин</a><br>
+    <a href="/registration">Регистрация</a>
+</span>
+
+<span th:if="${user != null}">
+    <hr>
+    <form action="/logout" method="post">
+        <input type="submit" value="Выйти">
+    </form>
+</span>
+
+</body>
+</html>
